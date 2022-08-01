@@ -6,12 +6,10 @@ const app = fastify()
 app.register(fastifyRequestID)
 
 app.register(fastifyRequestID, {
-  generateHash: () => '',
-  findRequestHeader: undefined,
-  addResponseHeader: undefined
+  generateHash: () => ''
 })
 
 app.register(fastifyRequestID, {
-  findRequestHeader: 'x-request-id-v2',
-  addResponseHeader: 'x-resp-id-v2'
+  requestIDName: 'x-request-id-v2',
+  sessionIDName: 'x-ses-id-v2'
 })
