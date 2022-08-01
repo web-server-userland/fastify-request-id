@@ -4,29 +4,31 @@ const fp = require('fastify-plugin')
 const { customAlphabet } = require('nanoid')
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+const hash = customAlphabet(alphabet, 15)
 
 const defaultOptions = {
-  generateHash: customAlphabet(alphabet, 15),
-  findRequestHeader: 'x-request-id',
-  addResponseHeader: 'x-request-id'
+  generateHash: (type) => hash(),
+  requestIDName: 'x-request-id',
+  sessionIDName: 'x-session-id'
 }
 
 function fastifyRequestID (fastify, opts, done) {
   fastify.decorateRequest('reqID', '')
+  fastify.decorateRequest('sesID', '')
 
   const options = Object.assign({}, defaultOptions, opts)
 
   fastify.addHook('onRequest', (request, _reply, next) => {
-    request.reqID = request.headers[options.findRequestHeader] || options.generateHash()
+    request.reqID = request.headers[options.requestIDName] || options.generateHash('requestID')
+    request.sesID = request.headers[options.sessionIDName] || options.generateHash('sessionID')
     next()
   })
 
-  if (options.addResponseHeader) {
-    fastify.addHook('onSend', (request, reply, _payload, next) => {
-      reply.header(options.addResponseHeader, request.reqID)
-      next()
-    })
-  }
+  fastify.addHook('onSend', (request, reply, _payload, next) => {
+    reply.header(options.requestIDName, request.reqID)
+    reply.header(options.sessionIDName, request.sesID)
+    next()
+  })
 
   done()
 }

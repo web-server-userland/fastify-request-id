@@ -6,7 +6,7 @@
 [![NPM size](https://img.shields.io/bundlephobia/min/@fastify-userland/request-id)](https://www.npmjs.com/package/@fastify-userland/request-id)
 [![Coverage Status](https://coveralls.io/repos/github/fastify-userland/request-id/badge.svg?branch=main)](https://coveralls.io/github/fastify-userland/request-id?branch=main)
 
-A plugin for Fastify that adds support for `request-id`.
+A plugin for Fastify that adds support for `request-id` and `session-id`.
 
 Supports Fastify versions 4.x.
 
@@ -35,8 +35,8 @@ fastify.register(require('@fastify-userland/request-id'), {
 })
 
 fastify.get('/', (req, reply) => {
-  console.log(req.reqID)
-  reply.send({ hello: 'world' })
+  console.log(req.reqID, req.sesID)
+  reply.send({ hello: 'world' }) // => response header has `x-request-id` and `x-session-id`
 })
 
 fastify.listen(3000)
@@ -46,17 +46,25 @@ You can use it as is without passing any option or you can configure it as expla
 
 ### Options
 
-* `generateHash`: Generate x-request-id hash. For example:
+* `generateHash`: Generate hash. For example:
 
 ```javascript
-generateHash: () => {
-  return uuidv4();
+/**
+ * @params {"requestID" | "sessionID"} type - will generate type hash
+ */
+generateHash: (type) => {
+  if (type === "requestID") {
+    return `req${uuidv4()}`
+  }
+  if (type === "sessionID") {
+    return `ses${uuidv4()}`
+  }
 }
 ```
 
-* `findRequestHeader`: Find request id in header. If found, the hash in the request header is used first.
+* `requestIDName`: request id name - *default: `x-request-id`*
 
-* `addResponseHeader`: Add request id to header. If it is undefined, it will not be added.
+* `sessionIDName`: session id name - *default: `x-session-id`*
 
 ## License
 

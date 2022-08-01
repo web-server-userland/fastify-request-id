@@ -5,27 +5,29 @@ import { FastifyPluginCallback } from 'fastify';
 declare module 'fastify' {
   interface FastifyRequest {
     /**
-     * current request id
+     * Current request id
      */
     reqID: string;
+    /**
+     * Current session id
+     */
+    sesID: string;
   }
 }
 
 export interface FastifyRequestIDOptions {
     /**
-     * Generate x-request-id hash
+     * Generate hash
      */
-    generateHash?: () => string;
+    generateHash?: (type: "requestID" | "sessionID") => string;
     /**
-     * Find request id in header.
-     * If found, the hash in the request header is used first.
+     * Add custom request id name to header.
      */
-    findRequestHeader?: string;
+     requestIDName?: string;
     /**
-     * Add request id to header.
-     * If it is undefined, it will not be added.
+     * Add custom session id name to header.
      */
-    addResponseHeader?: string;
+     sessionIDName?: string;
 }
 
 declare const fastifyRequestID: FastifyPluginCallback<FastifyRequestIDOptions>;
