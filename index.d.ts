@@ -12,7 +12,16 @@ declare module 'fastify' {
      * Current session id
      */
     sesID: string;
+    /**
+     * ID collection
+     */
+    ids: FastifyRequestIDS;
   }
+}
+
+export interface FastifyRequestIDS {
+  reqID: string;
+  sesID: string;
 }
 
 export interface FastifyRequestIDOptions {

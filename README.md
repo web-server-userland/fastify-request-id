@@ -35,7 +35,7 @@ fastify.register(require('@fastify-userland/request-id'), {
 })
 
 fastify.get('/', (req, reply) => {
-  console.log(req.reqID, req.sesID)
+  console.log(req.reqID, req.sesID, req.ids)
   reply.send({ hello: 'world' }) // => response header has `x-request-id` and `x-session-id`
 })
 

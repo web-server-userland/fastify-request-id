@@ -15,12 +15,17 @@ const defaultOptions = {
 function fastifyRequestID (fastify, opts, done) {
   fastify.decorateRequest('reqID', '')
   fastify.decorateRequest('sesID', '')
+  fastify.decorateRequest('ids', null)
 
   const options = Object.assign({}, defaultOptions, opts)
 
   fastify.addHook('onRequest', (request, _reply, next) => {
     request.reqID = request.headers[options.requestIDName] || options.generateHash('requestID')
     request.sesID = request.headers[options.sessionIDName] || options.generateHash('sessionID')
+    request.ids = {
+      reqID: request.reqID,
+      sesID: request.sesID
+    }
     next()
   })
 
