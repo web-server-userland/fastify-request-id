@@ -3,7 +3,7 @@ const Fastify = require('fastify')
 const fastifyRequestID = require('..')
 
 test('Use default options', async t => {
-  t.plan(4)
+  t.plan(5)
 
   const fastify = Fastify()
   fastify.register(fastifyRequestID)
@@ -11,6 +11,10 @@ test('Use default options', async t => {
   fastify.get('/', (req, reply) => {
     t.truthy(req.reqID)
     t.truthy(req.sesID)
+    t.deepEqual(req.ids, {
+      reqID: req.reqID,
+      sesID: req.sesID
+    })
     reply.send('ok')
   })
 
