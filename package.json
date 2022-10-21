@@ -26,13 +26,13 @@
     "index.d.ts"
   ],
   "author": "Black-Hole <158blackhole@gmail.com>",
-  "homepage": "https://github.com/fastify-userland/request-id#readme",
+  "homepage": "https://github.com/web-server-userland/fastify-request-id#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fastify-userland/request-id.git"
+    "url": "git+https://github.com/web-server-userland/fastify-request-id.git"
   },
   "bugs": {
-    "url": "https://github.com/fastify-userland/request-id/issues"
+    "url": "https://github.com/web-server-userland/fastify-request-id/issues"
   },
   "license": "MIT",
   "devDependencies": {

@@ -15,6 +15,6 @@ on:
 
 jobs:
   test:
-    uses: web-server-userland/fastify-workflows/.github/workflows/plugin-ci-pnpm.yml@v1
+    uses: web-server-userland/fastify-workflows/.github/workflows/plugin-ci-pnpm.yml@v2
     with:
       coveralls: true
