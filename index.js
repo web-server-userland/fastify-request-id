@@ -40,5 +40,5 @@ function fastifyRequestID (fastify, opts, done) {
 
 module.exports = fp(fastifyRequestID, {
   fastify: '4.x',
-  name: '@fastify-userland/request-id'
+  name: '@web-server-userland/fastify-request-id'
 })

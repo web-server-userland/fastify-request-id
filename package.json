@@ -1,6 +1,6 @@
 {
   "name": "@web-server-userland/fastify-request-id",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fastify Request ID Plugin",
   "main": "index.js",
   "types": "index.d.ts",
