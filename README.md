@@ -1,10 +1,10 @@
-# @fastify-userland/request-id
+# @web-server-userland/request-id
 
-![CI](https://github.com/fastify-userland/request-id/workflows/CI/badge.svg)
-[![NPM version](https://img.shields.io/npm/v/@fastify-userland/request-id.svg?style=flat)](https://www.npmjs.com/package/@fastify-userland/request-id)
+![CI](https://github.com/web-server-userland/request-id/workflows/CI/badge.svg)
+[![NPM version](https://img.shields.io/npm/v/@web-server-userland/request-id.svg?style=flat)](https://www.npmjs.com/package/@web-server-userland/request-id)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
-[![NPM size](https://img.shields.io/bundlephobia/min/@fastify-userland/request-id)](https://www.npmjs.com/package/@fastify-userland/request-id)
-[![Coverage Status](https://coveralls.io/repos/github/fastify-userland/request-id/badge.svg?branch=main)](https://coveralls.io/github/fastify-userland/request-id?branch=main)
+[![NPM size](https://img.shields.io/bundlephobia/min/@web-server-userland/request-id)](https://www.npmjs.com/package/@web-server-userland/request-id)
+[![Coverage Status](https://coveralls.io/repos/github/web-server-userland/request-id/badge.svg?branch=main)](https://coveralls.io/github/web-server-userland/request-id?branch=main)
 
 A plugin for Fastify that adds support for `request-id` and `session-id`.
 
@@ -16,13 +16,13 @@ Supports Fastify versions 4.x.
 
 ```shell
 # npm
-npm i @fastify-userland/request-id
+npm i @web-server-userland/request-id
 
 # pnpm
-pnpm add @fastify-userland/request-id
+pnpm add @web-server-userland/request-id
 
 # yarn
-yarn add @fastify-userland/request-id
+yarn add @web-server-userland/request-id
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ yarn add @fastify-userland/request-id
 ```JavaScript
 const fastify = require('fastify')()
 
-fastify.register(require('@fastify-userland/request-id'), {
+fastify.register(require('@web-server-userland/request-id'), {
   // put your options here
 })
 
